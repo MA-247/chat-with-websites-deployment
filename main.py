@@ -103,7 +103,7 @@ def process_website_content(website_text, DB, key):
     google_embeddings = VertexAIEmbeddings()
 
     # Create a Chroma vector database from the documents
-    vectordb = Chroma.from_texts(texts=docs, embedding=google_embeddings, persist_directory=DB)
+    vectordb = Chroma.from_texts(texts=docs, embedding=google_embeddings)
     
     return vectordb
 
