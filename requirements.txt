@@ -7,3 +7,4 @@ beautifulsoup4
 pytesseract
 Pillow
 chromadb  # Update to the specific version if known
+langchain-google-vertexai
