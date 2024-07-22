@@ -17,6 +17,7 @@ from PIL import Image
 from io import BytesIO
 import pytesseract
 from langchain_core.messages import HumanMessage, AIMessage
+import sqlite3 
 
 
 
