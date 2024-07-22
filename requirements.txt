@@ -2,6 +2,7 @@ streamlit
 langchain
 langchain_google_genai  # Update to the specific version if known
 langchain_core  # Update to the specific version if known
+langchain-chroma
 requests
 beautifulsoup4
 pytesseract
