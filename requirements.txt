@@ -3,6 +3,7 @@ langchain
 langchain_google_genai  # Update to the specific version if known
 langchain_core  # Update to the specific version if known
 langchain_community
+langchain_chroma
 requests
 beautifulsoup4
 pytesseract
