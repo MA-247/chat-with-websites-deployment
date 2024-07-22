@@ -4,12 +4,12 @@ import logging
 import streamlit as st
 from langchain.chains import RetrievalQA
 from langchain_google_genai import GoogleGenerativeAI #from langchain.chat_models import ChatOpenAI
-from langchain_google_genai import GoogleGenerativeAIEmbeddings #from langchain.embeddings import GooglePalmEmbeddings #OpenAIEmbeddings
+from langchain.embeddings import GooglePalmEmbeddings #OpenAIEmbeddings
 from langchain.prompts.chat import (ChatPromptTemplate,
                                     HumanMessagePromptTemplate,
                                     SystemMessagePromptTemplate)
 from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.vectorstores import Chroma #from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
 #import openai
 import requests
 from bs4 import BeautifulSoup
@@ -17,6 +17,8 @@ from PIL import Image
 from io import BytesIO
 import pytesseract
 from langchain_core.messages import HumanMessage, AIMessage
+
+
 
 # Ensure pytesseract is properly configured
 pytesseract.pytesseract.tesseract_cmd = r'/usr/bin/tesseract'  # Adjust this path based on your installation
@@ -94,17 +96,17 @@ def crawl_website(url):
 
     return soup.get_text()
 
-def process_website_content(website_text, key):
+def process_website_content(website_text, DB, key):
     # Split the loaded data
     text_splitter = CharacterTextSplitter(separator='\n', chunk_size=1000, chunk_overlap=40)
     docs = text_splitter.split_text(website_text)
 
-    # Create google embeddings
-    google_embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
+    # Create OpenAI embeddings
+    google_embeddings = GooglePalmEmbeddings(model="models/embedding-001")
 
     # Create a Chroma vector database from the documents
-    vectordb = Chroma.from_texts(texts=docs, embedding=google_embeddings)
-    
+    vectordb = Chroma.from_texts(texts=docs, embedding=google_embeddings, persist_directory=DB)    
+
     return vectordb
 
 #to delete the persistent db at exit 
@@ -154,7 +156,7 @@ def main():
             if website_text is None:
                 return
             if "vectordb" not in st.session_state:
-                st.session_state.vectordb = process_website_content(website_text, key)
+                st.session_state.vectordb = process_website_content(website_text, DB_DIR, key)
 
 
             # Create a retriever from the Chroma vector database
