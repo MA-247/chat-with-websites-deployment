@@ -4,7 +4,7 @@ import logging
 import streamlit as st
 from langchain.chains import RetrievalQA
 from langchain_google_genai import GoogleGenerativeAI #from langchain.chat_models import ChatOpenAI
-from langchain.embeddings import GooglePalmEmbeddings #OpenAIEmbeddings
+from langchain_google_vertexai import VertexAIEmbeddings #from langchain.embeddings import GooglePalmEmbeddings #OpenAIEmbeddings
 from langchain.prompts.chat import (ChatPromptTemplate,
                                     HumanMessagePromptTemplate,
                                     SystemMessagePromptTemplate)
@@ -99,8 +99,8 @@ def process_website_content(website_text, DB, key):
     text_splitter = CharacterTextSplitter(separator='\n', chunk_size=1000, chunk_overlap=40)
     docs = text_splitter.split_text(website_text)
 
-    # Create OpenAI embeddings
-    google_embeddings = GooglePalmEmbeddings(model="models/embedding-001")
+    # Create google embeddings
+    google_embeddings = VertexAIEmbeddings()
 
     # Create a Chroma vector database from the documents
     vectordb = Chroma.from_texts(texts=docs, embedding=google_embeddings, persist_directory=DB)
