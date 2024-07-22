@@ -9,5 +9,4 @@ pytesseract
 Pillow
 chroma
 chromadb  # Update to the specific version if known
-pysqlite3-binary
-
+pysqlite3-binary>=3.35.0
