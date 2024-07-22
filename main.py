@@ -103,7 +103,7 @@ def process_website_content(website_text, DB, key):
     google_embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
     # Create a Chroma vector database from the documents
-    vectordb = Chroma.from_texts(texts=docs, embedding=google_embeddings)
+    vectordb = Chroma.from_texts(texts=docs, embedding=google_embeddings, persistent_directory=DB)
     
     return vectordb
 
