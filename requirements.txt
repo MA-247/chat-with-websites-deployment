@@ -7,5 +7,6 @@ requests
 beautifulsoup4
 pytesseract
 Pillow
+chroma
 chromadb  # Update to the specific version if known
 pysqlite3-binary
