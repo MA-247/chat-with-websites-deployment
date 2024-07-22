@@ -9,7 +9,7 @@ from langchain.prompts.chat import (ChatPromptTemplate,
                                     HumanMessagePromptTemplate,
                                     SystemMessagePromptTemplate)
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import Chroma
+from langchain_chroma import Chroma
 #import openai
 import requests
 from bs4 import BeautifulSoup
