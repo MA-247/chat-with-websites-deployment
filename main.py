@@ -4,7 +4,7 @@ import logging
 import streamlit as st
 from langchain.chains import RetrievalQA
 from langchain_google_genai import GoogleGenerativeAI #from langchain.chat_models import ChatOpenAI
-from langchain.embeddings import GooglePalmEmbeddings #OpenAIEmbeddings
+from langchain_community.embeddings import GooglePalmEmbeddings #OpenAIEmbeddings
 from langchain.prompts.chat import (ChatPromptTemplate,
                                     HumanMessagePromptTemplate,
                                     SystemMessagePromptTemplate)
