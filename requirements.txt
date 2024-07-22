@@ -8,4 +8,4 @@ beautifulsoup4
 pytesseract
 Pillow
 chromadb  # Update to the specific version if known
-sqlite3 >= 3.35.0
+pysqlite3-binary
