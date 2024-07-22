@@ -94,7 +94,7 @@ def crawl_website(url):
 
     return soup.get_text()
 
-def process_website_content(website_text, DB, key):
+def process_website_content(website_text, key):
     # Split the loaded data
     text_splitter = CharacterTextSplitter(separator='\n', chunk_size=1000, chunk_overlap=40)
     docs = text_splitter.split_text(website_text)
@@ -103,7 +103,7 @@ def process_website_content(website_text, DB, key):
     google_embeddings = GoogleGenerativeAIEmbeddings(model="models/embedding-001")
 
     # Create a Chroma vector database from the documents
-    vectordb = Chroma.from_texts(texts=docs, embedding=google_embeddings, persistent_directory=DB)
+    vectordb = Chroma.from_texts(texts=docs, embedding=google_embeddings)
     
     return vectordb
 
@@ -154,7 +154,7 @@ def main():
             if website_text is None:
                 return
             if "vectordb" not in st.session_state:
-                st.session_state.vectordb = process_website_content(website_text, DB_DIR, key)
+                st.session_state.vectordb = process_website_content(website_text, key)
 
 
             # Create a retriever from the Chroma vector database
