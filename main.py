@@ -16,9 +16,7 @@ from bs4 import BeautifulSoup
 from PIL import Image
 from io import BytesIO
 import pytesseract
-from langchain_core.messages import HumanMessage, AIMessage
-import sqlite3 
-
+from langchain_core.messages import HumanMessage, AIMessage 
 
 
 # Ensure pytesseract is properly configured
